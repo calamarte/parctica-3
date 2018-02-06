@@ -15,9 +15,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Hola ${name}</h1>
-        <div class="alert alert-primary" role="alert">
-            This is a primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        <div class="card">
+            <h1 class="card-header">Iniciar sessió</h1>
+            <div class="card-body">
+                <form method="post" action="index.jsp">
+                    <input type="text" name="user" placeholder="Usuari">
+                    <input type="password" name="pass" placeholder="Contrasenya">
+                    <input type="submit" name="login" class="btn btn-primary" value="Entrar">
+                </form>
+            </div>
         </div>
     </body>
 </html>
