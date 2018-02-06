@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    background-color: #398bff;
+    margin: 0 100px 0 100px;
+    height: 100%;
+}
