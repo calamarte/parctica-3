@@ -11,8 +11,7 @@ public class ViewController {
 
     @RequestMapping("/")
     public ModelAndView login(){
-        ModelAndView mock = new ModelAndView("login");
-        return mock;
+        return new ModelAndView("login");
     }
 
     @RequestMapping("/inici")

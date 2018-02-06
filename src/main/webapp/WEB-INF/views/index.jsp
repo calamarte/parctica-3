@@ -16,6 +16,14 @@
     <body>
         <div class="wrapper">
             <p>Hola ${name}</p>
+
+            <div>
+                <h1>Peers</h1>
+                <div id="peers"></div>
+            </div>
         </div>
+        <script>
+            <%@ include file="/resources/js/script.js"%>
+        </script>
     </body>
 </html>
