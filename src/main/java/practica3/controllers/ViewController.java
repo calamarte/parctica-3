@@ -11,18 +11,19 @@ public class ViewController {
 
     @RequestMapping("/")
     public ModelAndView login(){
-        ModelAndView m = new ModelAndView("login");
-        System.out.println(m.getStatus());
-        return m;
+        ModelAndView mock = new ModelAndView("login");
+        return mock;
     }
 
     @RequestMapping("/inici")
-    public String home(@RequestParam("user") String user, @RequestParam("pass") String password) {
-        Mock m = new Mock();
-        if (m.validate(user,password)) {
-            return "Benvingut " + user;
+    public ModelAndView home(@RequestParam("user") String user, @RequestParam("pass") String password) {
+        Mock mock = new Mock();
+        ModelAndView modelAndView = new ModelAndView("index");
+        if (mock.validate(user,password)) {
+            modelAndView.addObject("name",user);
         } else {
-            return "Login error";
+            modelAndView.addObject("name","Error");
         }
+        return modelAndView;
     }
 }
