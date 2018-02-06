@@ -1,6 +1,7 @@
 package practica3.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,8 +15,8 @@ public class ViewController {
         return m;
     }
 
-    @RequestMapping("/hola")
-    public String ppe(){
-        return "aló";
+    @RequestMapping("/inici")
+    public String home(@RequestParam("user") String user){
+        return "Benvingut " + user;
     }
 }
