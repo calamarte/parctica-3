@@ -8,15 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class ViewController {
 
     @RequestMapping("/")
-    public ModelAndView prueba(){
-        ModelAndView m = new ModelAndView("index");
-
-        m.addObject("name","calamarte");
+    public ModelAndView login(){
+        ModelAndView m = new ModelAndView("login");
+        System.out.println(m.getStatus());
         return m;
     }
 
     @RequestMapping("/hola")
     public String ppe(){
-        return "hoal";
+        return "aló";
     }
 }
