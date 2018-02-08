@@ -12,6 +12,6 @@
 </head>
 <body>
     <h1>Missatge d'error: ${errorMessage}</h1>
-    <a href="login.jsp">Tornar al login</a>
+    <a href="/">Tornar al login</a>
 </body>
 </html>
