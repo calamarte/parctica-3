@@ -15,8 +15,9 @@
     </head>
     <body>
         <div class="wrapper">
+    <body>
+        <div class="wrapper">
             <p>Hola ${name}</p>
-
             <div>
                 <h1>Peers</h1>
                 <div id="peers"></div>
