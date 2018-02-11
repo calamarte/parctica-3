@@ -1,11 +1,12 @@
 package practica3.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import practica3.exception.CustomExceptionGenerator;
 import practica3.login.Mock;
 
-@RestController
+@Controller
 public class ViewController {
 
     @RequestMapping("/")
