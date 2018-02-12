@@ -1,16 +1,18 @@
 package practica3.controllers;
 
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+@PropertySource("classpath:application.properties")
 @RestController
 public class MicroservicesController {
 
@@ -33,14 +35,22 @@ public class MicroservicesController {
         return responseEntity.getBody();
     }
 
-    @RequestMapping(value = "/blocks/{peerIp}", method = RequestMethod.POST)
-    public String showBlocksByPeer(@PathVariable("peerIp") String peerIp){
-        HttpEntity<String> requestEntity = new HttpEntity<String>("");
+    @RequestMapping(value = "/blocks", method = RequestMethod.POST)
+    public String showBlocksByPeer(@RequestBody String peerIp){
 
+        try {
+            JSONObject dataJSON = new JSONObject(peerIp);
 
-        ResponseEntity<String> responseEntity = restTemplate.exchange("http://"+ peerIp +":"+blockPort+"/blocks",
-                HttpMethod.POST, requestEntity, String.class);
-        return responseEntity.getBody();
+            HttpEntity<String> requestEntity = new HttpEntity<String>("");
+
+            ResponseEntity<String> responseEntity = restTemplate.exchange("http://"+ dataJSON.get("peerIp") +":"+blockPort+"/blocks",
+                    HttpMethod.POST, requestEntity, String.class);
+            return responseEntity.getBody();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @RequestMapping(value = "/addBlock" , method = RequestMethod.POST)
@@ -51,9 +61,9 @@ public class MicroservicesController {
             JSONObject dataJSON = new JSONObject(blockData);
             String peerIp = dataJSON.remove("peerIp").toString();
 
-
             HttpEntity<String> requestEntity = new HttpEntity<String>(dataJSON.toString());
-            ResponseEntity<String> responseEntity = restTemplate.exchange("http://"+ peerIp +":"+blockPort+"",
+            ResponseEntity<String> responseEntity = restTemplate.exchange(
+                    "http://"+ peerIp +":"+blockPort,
                     HttpMethod.POST, requestEntity, String.class);
 
             return responseEntity.getBody();
