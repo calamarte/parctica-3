@@ -18,7 +18,7 @@
         <div class="card" id="content">
             <h1 class="card-header">Iniciar sessió</h1>
             <div class="card-body">
-                <form method="post" action="inici">
+                <form onsubmit="login(event)" method="post" action="inici">
                     <input id="userId" type="text" name="user" placeholder="Usuari">
                     <input id="passwordId" type="password" name="pass" placeholder="Contrasenya">
                     <input id="buttonSubmit" type="submit" name="login" class="btn btn-primary" value="Entrar">
@@ -26,28 +26,14 @@
             </div>
         </div>
     <script>
-        let user = document.querySelector("#userId");
-        let password = document.querySelector("#passwordId");
-        let credentials = user + ":" + password;
-        let encodedData = window.btoa(credentials);
-        localStorage.setItem("base64",encodedData);
-
-        document.querySelector("#buttonSubmit").addEventListener("click", function (event) {
-//            event.preventDefault();
-//            fetch("http://localhost:8080/inici", {
-//                method: "POST",
-//                headers: {
-//                    "Content-type":"application/x-www-form-urlencoded",
-//                    "Authorization":"Basic " + encodedData
-//                }
-//            })
-//                .then(function(response){
-//                    response.text().then(function(text) {
-//                            document.querySelector('#content').innerHTML=text;
-//                        }
-//                    );
-//                });
-        });
+        function login(event) {
+            let user = document.querySelector("#userId");
+            let password = document.querySelector("#passwordId");
+            let credentials = user + ":" + password;
+            let encodedData = window.btoa(credentials);
+            localStorage.setItem("base64",encodedData);
+            console.log("Guardado! --> " + encodedData);
+        }
     </script>
     </body>
 </html>

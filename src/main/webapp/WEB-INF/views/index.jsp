@@ -47,13 +47,14 @@
                     <button v-on:click="addBlock">Add Block</button>
                 </div>
             </div>
-        </div>
 
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
         <script>
             <%@ include file="/resources/js/script.js"%>
         </script>
-        <script>
+
+       <!-- <script>
             var addClickEvent = function(){
                 document.querySelectorAll('a').forEach(function(link){
                     link.addEventListener('click',function(event){
@@ -102,6 +103,6 @@
             addFormEvent();
             document.querySelector('#content').addEventListener("DOMSubtreeModified", addClickEvent);
             document.querySelector('#content').addEventListener("DOMSubtreeModified", addFormEvent);
-        </script>
+        </script> -->
     </body>
 </html>

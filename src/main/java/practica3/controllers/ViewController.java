@@ -23,9 +23,9 @@ public class ViewController {
     }
 
     @RequestMapping("/inici")
-    public ModelAndView home(@RequestParam("user") String user, @RequestParam("pass") String password) throws CustomExceptionGenerator, SocketException {
+    public ModelAndView home(String password) throws CustomExceptionGenerator, SocketException {
         ModelAndView modelAndView = new ModelAndView("index");
-        if (login.validate(user,password)) {
+        if (login.validate("","")) {
             modelAndView.addObject("ip", Utils.getFirstNonLoopbackAddress());
         } else {
             throw new CustomExceptionGenerator(HttpStatus.FORBIDDEN);
