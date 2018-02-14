@@ -28,12 +28,15 @@
     <script>
         let user = document.querySelector("#userId");
         let password = document.querySelector("#passwordId");
+        let credentials = user + ":" + password;
+        let encodedData = window.btoa(credentials);
+
 
         let peerFetch = fetch("${ip}", {
             method: "POST",
             headers:{
                 "Content-type":"application/x-www-form-urlencoded",
-                    "Authorization":"Basic " + (usuario:contraseña) a base64
+                "Authorization":"Basic " + encodedData
             }
         })
             .then(res => res.json())
