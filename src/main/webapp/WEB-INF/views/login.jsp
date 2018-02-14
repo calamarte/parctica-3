@@ -30,7 +30,7 @@
         let password = document.querySelector("#passwordId");
         let credentials = user + ":" + password;
         let encodedData = window.btoa(credentials);
-
+        localStorage.setItem("base64",encodedData);
 
         let peerFetch = fetch("${ip}", {
             method: "POST",
