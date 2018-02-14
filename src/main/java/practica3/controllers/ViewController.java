@@ -1,5 +1,8 @@
 package practica3.controllers;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,6 +11,8 @@ import practica3.login.Mock;
 import practica3.practica3.utils.Utils;
 
 import java.net.SocketException;
+
+import java.nio.charset.Charset;
 
 @Controller
 public class ViewController {
@@ -24,7 +29,7 @@ public class ViewController {
         if (mock.validate(user,password)) {
             modelAndView.addObject("ip", Utils.getFirstNonLoopbackAddress());
         } else {
-            throw new CustomExceptionGenerator("Credencials incorrectes");
+            throw new CustomExceptionGenerator(HttpStatus.FORBIDDEN);
         }
         return modelAndView;
     }

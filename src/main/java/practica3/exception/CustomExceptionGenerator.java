@@ -1,21 +1,21 @@
 package practica3.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+//import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value= HttpStatus.NOT_FOUND, reason="User not found")
+//@ResponseStatus(value= HttpStatus.FORBIDDEN, reason="Without Access")
 public class CustomExceptionGenerator extends RuntimeException{
-    private String errorMessage;
+    private HttpStatus status;
 
-    public CustomExceptionGenerator(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public CustomExceptionGenerator(HttpStatus status) {
+        this.status = status;
     }
 
     public String getErrorMessage() {
-        return errorMessage;
+        return status.toString();
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setErrorMessage(HttpStatus status) {
+        this.status = status;
     }
 }
