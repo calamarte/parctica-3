@@ -25,5 +25,16 @@
                 </form>
             </div>
         </ditbuciv>
+    <script>
+        let peerFetch = fetch("${ip}", {
+            method: "POST",
+            headers:{
+                "Content-type":"application/x-www-form-urlencoded",
+                    "Authorization":"Basic " + (usuario:contraseña) a base64
+            }
+        })
+            .then(res => res.json())
+        .then(res => this.peers = res);
+    </script>
     </body>
 </html>
