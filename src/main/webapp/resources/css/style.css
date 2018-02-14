@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 
-.wrapper {
-    background-color: #398bff;
+body {
+    background-color: #A9E2F3;
     margin: 0 100px 0 100px;
     height: 100%;
 }
