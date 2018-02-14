@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import practica3.exception.CustomExceptionGenerator;
 import practica3.login.AuthLogin;
-import practica3.login.Mock;
 import practica3.practica3.utils.Utils;
 
 import java.net.SocketException;

@@ -15,13 +15,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card">
+        <div class="card" id="content">
             <h1 class="card-header">Iniciar sessió</h1>
             <div class="card-body">
                 <form method="post" action="inici">
                     <input id="userId" type="text" name="user" placeholder="Usuari">
                     <input id="passwordId" type="password" name="pass" placeholder="Contrasenya">
-                    <input type="submit" name="login" class="btn btn-primary" value="Entrar">
+                    <input id="buttonSubmit" type="submit" name="login" class="btn btn-primary" value="Entrar">
                 </form>
             </div>
         </div>
@@ -32,15 +32,22 @@
         let encodedData = window.btoa(credentials);
         localStorage.setItem("base64",encodedData);
 
-        let peerFetch = fetch("${ip}", {
-            method: "POST",
-            headers:{
-                "Content-type":"application/x-www-form-urlencoded",
-                "Authorization":"Basic " + encodedData
-            }
-        })
-            .then(res => res.json())
-        .then(res => this.peers = res);
+        document.querySelector("#buttonSubmit").addEventListener("click", function (event) {
+//            event.preventDefault();
+//            fetch("http://localhost:8080/inici", {
+//                method: "POST",
+//                headers: {
+//                    "Content-type":"application/x-www-form-urlencoded",
+//                    "Authorization":"Basic " + encodedData
+//                }
+//            })
+//                .then(function(response){
+//                    response.text().then(function(text) {
+//                            document.querySelector('#content').innerHTML=text;
+//                        }
+//                    );
+//                });
+        });
     </script>
     </body>
 </html>
