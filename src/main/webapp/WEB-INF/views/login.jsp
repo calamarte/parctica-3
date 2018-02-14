@@ -26,6 +26,8 @@
             </div>
         </ditbuciv>
     <script>
+
+
         let peerFetch = fetch("${ip}", {
             method: "POST",
             headers:{
