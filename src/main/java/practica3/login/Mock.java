@@ -13,4 +13,9 @@ public class Mock implements AuthLogin {
             return false;
         }
     }
+
+    @Override
+    public boolean checkSession() {
+        return true;
+    }
 }
