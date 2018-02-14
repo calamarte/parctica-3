@@ -1,10 +1,15 @@
 package practica3.controllers;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import practica3.exception.CustomExceptionGenerator;
 import practica3.login.Mock;
+
+import java.nio.charset.Charset;
 
 @Controller
 public class ViewController {
@@ -20,8 +25,9 @@ public class ViewController {
         ModelAndView modelAndView = new ModelAndView("index");
         if (mock.validate(user,password)) {
             modelAndView.addObject("name",user);
+
         } else {
-            throw new CustomExceptionGenerator("Credencials incorrectes");
+            throw new CustomExceptionGenerator(HttpStatus.FORBIDDEN);
         }
         return modelAndView;
     }
