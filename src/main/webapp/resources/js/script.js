@@ -1,4 +1,3 @@
-
 let app = new Vue({
     el: "#app",
     data: {
@@ -17,6 +16,10 @@ let app = new Vue({
 
             fetch(this.ip + ":" + this.port + "/peers", {
                 method: "POST",
+                headers: {
+                    "Content-type":"application/x-www-form-urlencoded",
+                    "Authorization":"Basic " + localStorage.getItem("base64")
+                }
             })
                 .then(res => res.json())
         .then(res => this.peers = res);
@@ -32,6 +35,10 @@ let app = new Vue({
 
             let blockFetch = fetch(this.ip + ":" + this.port + "/blocks", {
                 method: "POST",
+                headers: {
+                    "Content-type":"application/x-www-form-urlencoded",
+                    "Authorization":"Basic " + localStorage.getItem("base64")
+                },
                 body: JSON.stringify({
                     peerIp: this.peer.ip
                 })
@@ -48,6 +55,10 @@ let app = new Vue({
             console.log("Add Block")
             let blockFetch = fetch(this.ip + ":" + this.port + "/addBlock", {
                 method: "POST",
+                headers: {
+                    "Content-type":"application/x-www-form-urlencoded",
+                    "Authorization":"Basic " + localStorage.getItem("base64")
+                },
                 body: JSON.stringify({
                     peerIp: this.peer.ip
                 })
