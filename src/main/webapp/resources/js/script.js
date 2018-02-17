@@ -2,7 +2,7 @@ let app = new Vue({
     el: "#app",
     data: {
         ip: "http:/${ip}",
-        port: 8081,
+        port: 8080,
         peer: {},
         peers: {},
         blockchain: []

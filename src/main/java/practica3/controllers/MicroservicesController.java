@@ -1,7 +1,5 @@
 package practica3.controllers;
 
-
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
