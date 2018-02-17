@@ -1,37 +1,18 @@
 package practica3.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import practica3.exception.CustomExceptionGenerator;
-import practica3.login.AuthLogin;
-import practica3.login.Mock;
-import practica3.practica3.utils.Utils;
 
-import java.net.SocketException;
 
 @Controller
 public class ViewController {
 
-    @Autowired
-    AuthLogin login;
-
     @RequestMapping("/")
-    public ModelAndView login(){
-        return new ModelAndView("login");
-    }
-
-    @RequestMapping("/inici")
-    public ModelAndView home(@RequestParam("user") String user, @RequestParam("pass") String password) throws CustomExceptionGenerator, SocketException {
-        ModelAndView modelAndView = new ModelAndView("index");
-        if (login.validate(user,password)) {
-            modelAndView.addObject("ip", Utils.getFirstNonLoopbackAddress());
-        } else {
-            throw new CustomExceptionGenerator(HttpStatus.FORBIDDEN);
-        }
-        return modelAndView;
+    public ModelAndView home(){
+        return new ModelAndView("index");
     }
 
     @ExceptionHandler(CustomExceptionGenerator.class)

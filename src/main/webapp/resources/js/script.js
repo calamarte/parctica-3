@@ -10,7 +10,12 @@ let app = new Vue({
     },
     methods: {
         loadData: function () {
-            let peerFetch = fetch(this.ip + ":" + this.port + "/peers", {
+            if(!localStorage.getItem('base64')){
+                showModal();
+                return;
+            }
+
+            fetch(this.ip + ":" + this.port + "/peers", {
                 method: "POST",
             })
                 .then(res => res.json())
@@ -20,6 +25,11 @@ let app = new Vue({
 
         },
         showBlockchain: function () {
+            if(!localStorage.getItem('base64')){
+                showModal();
+                return;
+            }
+
             let blockFetch = fetch(this.ip + ":" + this.port + "/blocks", {
                 method: "POST",
                 body: JSON.stringify({
@@ -30,6 +40,11 @@ let app = new Vue({
         .then(res => this.blockchain = res);
         },
         addBlock: function () {
+            if(!localStorage.getItem('base64')){
+                showModal();
+                return;
+            }
+
             console.log("Add Block")
             let blockFetch = fetch(this.ip + ":" + this.port + "/addBlock", {
                 method: "POST",
@@ -43,5 +58,20 @@ let app = new Vue({
     },
     created: function () {
         this.loadData();
-    },
+    }
 });
+
+
+function showModal() {
+    $('#modal').modal('show');
+}
+
+document.querySelector('#save').addEventListener('click',()=>{
+    let user = document.querySelector('#user').value;
+    let pass =  document.querySelector('#pass').value;
+
+    localStorage.setItem("base64",window.btoa(user + ":" + pass));
+
+    location.reload(true);
+});
+
