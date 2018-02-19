@@ -35,23 +35,27 @@ public class WebInterceptor extends HandlerInterceptorAdapter {
         response.setHeader(MAX_AGE_NAME, "3600");
 
         logger.info(request.getHeader("Content-type"));
-        logger.info(request.getHeader("Authorization"));
+
+        String auth = request.getHeader("Authorization");
+        logger.info(auth);
 
 //
 //        String headerContent = request.getHeader("Authorization");
 //        logger.info("header 1: "+headerContent);
 
-//        if (!request.getRequestURL().toString().endsWith("/")){
+        if (!request.getRequestURL().toString().endsWith("/")){
 //            logger.info("no /");
 //            String headerContent2 = request.getHeader("Authorization");
 //            logger.info("header2: "+headerContent);
-//            String[] cypherHeader = headerContent.split(" ");
+            String cypherHeader = auth.split(" ")[1];
 //            logger.info("cifrado"+cypherHeader);
-//            byte[] decoded = Base64.getDecoder().decode(cypherHeader[1]);
+            String decoded = new String(Base64.getDecoder().decode(cypherHeader));
+
+            logger.warn(decoded);
 //            logger.info("decoded: "+decoded);
 
 //            checkLogin.validate(request.getHeader("Authorization"));
-//        }
+        }
 
 //        String[] cypherHeader = headerContent.split(" ");
 //        logger.info(cypherHeader.toString());
@@ -64,12 +68,10 @@ public class WebInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        logger.info("Request URL::" + request.getRequestURL().toString());
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        logger.info("Request URL::" + request.getRequestURL().toString());
     }
 
 }
