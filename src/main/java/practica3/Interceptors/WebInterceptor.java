@@ -27,7 +27,7 @@ public class WebInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("Request URL::" + request.getRequestURL().toString());
+//        logger.info("Request URL::" + request.getRequestURL().toString());
         response.setHeader(CREDENTIALS_NAME, "true");
         response.setHeader(ORIGIN_NAME, "*");
         response.setHeader(METHODS_NAME, "GET, OPTIONS, POST, PUT, DELETE");
