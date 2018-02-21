@@ -24,7 +24,7 @@ public class MicroservicesController {
     private RestTemplate restTemplate = new RestTemplate();
 
 
-    @RequestMapping(value = "/peers", method = RequestMethod.GET)
+    @RequestMapping(value = "/peers", method = RequestMethod.POST)
     public String showPeers(){
         HttpEntity<String> requestEntity = new HttpEntity<String>("");
 
@@ -33,10 +33,11 @@ public class MicroservicesController {
         return responseEntity.getBody();
     }
 
-    @RequestMapping(value = "/blocks", method = RequestMethod.GET)
+    @RequestMapping(value = "/blocks", method = RequestMethod.POST)
     public String showBlocksByPeer(@RequestBody String peerIp){
 
         try {
+            System.out.println(peerIp);
             JSONObject dataJSON = new JSONObject(peerIp);
 
             HttpEntity<String> requestEntity = new HttpEntity<String>("");
@@ -51,7 +52,7 @@ public class MicroservicesController {
         return null;
     }
 
-    @RequestMapping(value = "/addBlock" , method = RequestMethod.GET)
+    @RequestMapping(value = "/addBlock" , method = RequestMethod.POST)
     public String addBlock(@RequestBody String blockData){
 
         try {

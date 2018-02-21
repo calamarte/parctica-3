@@ -15,7 +15,7 @@ new Vue({
             }
 
             fetch(this.ip + ":" + this.port + "/peers", {
-                method: "GET",
+                method: "POST",
                 headers: {
                     "Content-type": "application/x-www-form-urlencoded",
                     "Authorization": "Basic " + localStorage.getItem("base64")
@@ -32,10 +32,10 @@ new Vue({
                 return;
             }
 
+            console.log(this.peer.ip);
             fetch(this.ip + ":" + this.port + "/blocks", {
-                method: "GET",
+                method: "POST",
                 headers: {
-                    "Content-type": "application/x-www-form-urlencoded",
                     "Authorization": "Basic " + localStorage.getItem("base64")
                 },
                 body: JSON.stringify({
@@ -53,9 +53,8 @@ new Vue({
 
             console.log("Add Block");
             fetch(this.ip + ":" + this.port + "/addBlock", {
-                method: "GET",
+                method: "POST",
                 headers: {
-                    "Content-type": "application/x-www-form-urlencoded",
                     "Authorization": "Basic " + localStorage.getItem("base64")
                 },
                 body: JSON.stringify({
