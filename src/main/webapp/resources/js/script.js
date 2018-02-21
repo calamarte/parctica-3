@@ -1,70 +1,69 @@
-let app = new Vue({
+new Vue({
     el: "#app",
     data: {
         ip: "http:/${ip}",
-        port: 8081,
+        port: ${port},
         peer: {},
         peers: {},
         blockchain: []
     },
     methods: {
         loadData: function () {
-            if(!localStorage.getItem('base64')){
+            if (!localStorage.getItem('base64')) {
                 showModal();
                 return;
             }
 
             fetch(this.ip + ":" + this.port + "/peers", {
-                method: "POST",
+                method: "GET",
                 headers: {
-                    "Content-type":"application/x-www-form-urlencoded",
-                    "Authorization":"Basic " + localStorage.getItem("base64")
+                    "Content-type": "application/x-www-form-urlencoded",
+                    "Authorization": "Basic " + localStorage.getItem("base64")
                 }
             })
                 .then(res => res.json())
-        .then(res => this.peers = res);
-
+                .then(res => this.peers = res);
 
 
         },
         showBlockchain: function () {
-            if(!localStorage.getItem('base64')){
+            if (!localStorage.getItem('base64')) {
                 showModal();
                 return;
             }
 
-            let blockFetch = fetch(this.ip + ":" + this.port + "/blocks", {
-                method: "POST",
+            fetch(this.ip + ":" + this.port + "/blocks", {
+                method: "GET",
                 headers: {
-                    "Content-type":"application/x-www-form-urlencoded",
-                    "Authorization":"Basic " + localStorage.getItem("base64")
+                    "Content-type": "application/x-www-form-urlencoded",
+                    "Authorization": "Basic " + localStorage.getItem("base64")
                 },
                 body: JSON.stringify({
                     peerIp: this.peer.ip
                 })
             })
                 .then(res => res.json())
-        .then(res => this.blockchain = res);
+                .then(res => this.blockchain = res);
         },
         addBlock: function () {
-            if(!localStorage.getItem('base64')){
+            if (!localStorage.getItem('base64')) {
                 showModal();
                 return;
             }
 
-            console.log("Add Block")
-            let blockFetch = fetch(this.ip + ":" + this.port + "/addBlock", {
-                method: "POST",
+            console.log("Add Block");
+            fetch(this.ip + ":" + this.port + "/addBlock", {
+                method: "GET",
                 headers: {
-                    "Content-type":"application/x-www-form-urlencoded",
-                    "Authorization":"Basic " + localStorage.getItem("base64")
+                    "Content-type": "application/x-www-form-urlencoded",
+                    "Authorization": "Basic " + localStorage.getItem("base64")
                 },
                 body: JSON.stringify({
                     peerIp: this.peer.ip
                 })
             })
                 .then(res => res.json())
-        .then(res => this.showBlockchain());
+                .then(res => this.showBlockchain());
         }
     },
     created: function () {
@@ -77,11 +76,11 @@ function showModal() {
     $('#modal').modal('show');
 }
 
-document.querySelector('#save').addEventListener('click',()=>{
+document.querySelector('#save').addEventListener('click', () => {
     let user = document.querySelector('#user').value;
-    let pass =  document.querySelector('#pass').value;
+    let pass = document.querySelector('#pass').value;
 
-    localStorage.setItem("base64",window.btoa(user + ":" + pass));
+    localStorage.setItem("base64", window.btoa(user + ":" + pass));
 
     location.reload(true);
 });

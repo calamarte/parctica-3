@@ -1,4 +1,4 @@
-package practica3.practica3.utils;
+package practica3.Utils;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
