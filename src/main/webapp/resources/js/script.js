@@ -4,8 +4,9 @@ new Vue({
         ip: "http:/${ip}",
         port: ${port},
         peer: {},
-        peers: {},
-        blockchain: []
+        peers: [],
+        blockchain: [],
+        data: "",
     },
     methods: {
         loadData: function () {
@@ -22,7 +23,7 @@ new Vue({
                 }
             })
                 .then(res => res.json())
-                .then(res => this.peers = res);
+                .then(res => this.peers = res.peers);
 
 
         },
@@ -32,7 +33,6 @@ new Vue({
                 return;
             }
 
-            console.log(this.peer.ip);
             fetch(this.ip + ":" + this.port + "/blocks", {
                 method: "POST",
                 headers: {
@@ -51,14 +51,14 @@ new Vue({
                 return;
             }
 
-            console.log("Add Block");
             fetch(this.ip + ":" + this.port + "/addBlock", {
                 method: "POST",
                 headers: {
                     "Authorization": "Basic " + localStorage.getItem("base64")
                 },
                 body: JSON.stringify({
-                    peerIp: this.peer.ip
+                    peerIp: this.peer.ip,
+                    data: this.data,
                 })
             })
                 .then(res => res.json())

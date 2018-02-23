@@ -20,7 +20,7 @@
     <body>
         <div id="app">
             <ul id="peerList">
-                <li v-for="p in peers.peers">
+                <li v-for="p in peers">
                     <input v-model="peer" type="radio" :value="p">
                     <label>{{p.date}} {{p.ip}} {{p.name}}</label>
                 </li>
@@ -42,13 +42,11 @@
                 </tr>
             </table>
 
-
-            <!--<p>{{blockchain}}</p>-->
-
             <div id="block"></div>
             <button v-on:click="showBlockchain">Show Blockchain</button>
-
+            <input v-model="data" type="text">
             <button v-on:click="addBlock">Add Block</button>
+
         </div>
 
         <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
