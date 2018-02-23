@@ -1,23 +1,20 @@
 package practica3.Interceptors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import practica3.login.AuthLogin;
-import practica3.login.Mock;
+
 
 import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Component
 public class WebInterceptor extends HandlerInterceptorAdapter {
 
-    private AuthLogin checkLogin = new Mock();
+    private AuthLogin checkLogin;
 
     private static final String CREDENTIALS_NAME = "Access-Control-Allow-Credentials";
     private static final String ORIGIN_NAME = "Access-Control-Allow-Origin";
@@ -25,6 +22,7 @@ public class WebInterceptor extends HandlerInterceptorAdapter {
     private static final String HEADERS_NAME = "Access-Control-Allow-Headers";
     private static final String MAX_AGE_NAME = "Access-Control-Max-Age";
     private static final Logger logger = LoggerFactory.getLogger(WebInterceptor.class);
+    private AuthLogin authLogin;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -64,5 +62,8 @@ public class WebInterceptor extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
     }
 
+    public void setAuthLogin(AuthLogin authLogin) {
+        this.checkLogin = authLogin;
+    }
 }
 

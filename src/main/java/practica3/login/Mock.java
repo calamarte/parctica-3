@@ -3,7 +3,6 @@ package practica3.login;
 import org.springframework.stereotype.Component;
 
 
-@Component
 public class Mock implements AuthLogin {
 
     @Override

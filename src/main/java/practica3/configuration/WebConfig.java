@@ -11,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import practica3.Interceptors.WebInterceptor;
+import practica3.login.AuthLogin;
+import practica3.login.Mock;
 
 @Configuration
 @EnableWebMvc
@@ -28,9 +30,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
+    @Bean
+    public AuthLogin authLogin(){
+        return new Mock();
+    }
+
+    @Bean
+    public WebInterceptor webInterceptor(){
+        WebInterceptor webInterceptor = new WebInterceptor();
+        webInterceptor.setAuthLogin(authLogin());
+        return webInterceptor;
+    }
+
     @Override
     public void addInterceptors (InterceptorRegistry registry) {
-        registry.addInterceptor(new WebInterceptor());
+        registry.addInterceptor(webInterceptor());
     }
 
 }
