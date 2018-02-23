@@ -22,7 +22,6 @@ public class WebInterceptor extends HandlerInterceptorAdapter {
     private static final String HEADERS_NAME = "Access-Control-Allow-Headers";
     private static final String MAX_AGE_NAME = "Access-Control-Max-Age";
     private static final Logger logger = LoggerFactory.getLogger(WebInterceptor.class);
-    private AuthLogin authLogin;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
